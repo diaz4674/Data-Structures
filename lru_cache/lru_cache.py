@@ -14,8 +14,6 @@ class LRUCache:
         self.size = 0
         self.order = DoublyLinkedList()
         self.limit = limit
-        self.storage = DoublyLinkedList()
-        self.size = 0
         self.storage = {}
 
     """

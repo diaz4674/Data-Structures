@@ -26,18 +26,18 @@ class BinarySearchTree:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        if self.value is target:
+        # if target = self.value. return
+        # If not, go left or right depending on value size
+        if self.value == target:
             return True
         if self.value < target:
-            if self.right is None:
-                return False
-            else:
+            if self.right:
                 return self.right.contains(target)
-        if self.value > target:
-            if self.left is None:
-                return False
-            else:
+        elif self.value > target:
+            if self.left:
                 return self.left.contains(target)
+        else:
+            return False
 
     # Return the maximum value found in the tree
     def get_max(self):
@@ -63,16 +63,18 @@ class BinarySearchTree:
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
         if node is None:
-            return node
-        if  node.in_order_print(node.left):
-            print(node.value)
-        if node.in_order_print(node.right):
-            return node
+            return
+        # Starting on the left-side for the lowest value first
+        node.in_order_print(node.left)
+        print(node.value)
+        # Next moving to the right-side right of each tree
+        node.in_order_print(node.right)
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
         queue = Queue()
         queue.enqueue(node)
+        
         while queue.len > 0:
             current = queue.dequeue()
             print(current.value)
